@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign up</title>
+	<script type="text/javascript" src="jq.min.js"></script>
+	<style type="text/css">
+		body{
+			font-family: sans-serif;
+			font-size: 140%; 
+			
+		}
+		input{
+		
+			padding: 7px;
+			font-size: 20px;
+			border-radius: 10px;
+			border: 3px solid grey;
+			
+
+		}
+		label{
+			position:relative;
+			top: 7px;
+			width: 200px;
+			float: left;
+
+
+		}
+		#wrapper{
+			width: 500px;
+			margin: 0 auto;
+		}
+		.mar{
+			margin-bottom: 10px;
+		}
+		#sbut{
+			margin-left: 200px;
+		}		
+		#err{
+			color: red;
+			font-size: 90%;
+		}
+		#succ{
+			color: green;
+			font-size: 90%;
+			display: none;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="err"></div>
+		<div id="succ"><p>You did it! Congratulations.</p></div>
+		<div class ="mar">
+  			 <label for="email">Email</label>
+ 			 <input type="text" name="email" id="email" placeholder="Ex. abc@a.com">
+		</div>
+		<div class ="mar">
+	<label for="passw">Password</label>
+	<input type="password" name="passw" id="passw" placeholder="********">
+  		  </div>
+  		  	<div class ="mar">
+	<label for="cpass">Confirm Password</label>
+	<input type="password" name="cpass" id="cpassw" placeholder="********">
+  		  </div>
+  		  <div class ="mar">
+	<input type="submit" id="sbut" value="Sign Up">
+  		  </div>
+  	</div>
+  	<script type="text/javascript">
+  		function isEmail(email) {
+  				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  				return regex.test(email);
+			}
+  		$("#sbut").click(function(){
+  				var error="";
+  				var miss="";
+  				if($('#email').val()=="")
+  					miss+="Email";
+  				 if($('#passw').val()=="")
+  					miss+="<br>Password";
+  				if($('#cpassw').val()=="")
+					miss+="<br>Confirm Password";
+				
+				if(miss!="")
+					error+="<p>Following field are missing</p> "+miss;
+  				
+  				if(isEmail($('#email').val())==false)
+  				error+= "<p> Email address is not valid </p>";
+  				if($('#passw').val()!=$('#cpassw').val())
+  				error+="<p> Your password doesn't match </p>";
+  				if(error!="")
+  					$("#err").html(error);
+  				else{
+  					$("#succ").show();
+  					$('#err').hide();
+
+  				}
+  		});
+  	</script>
+
+	
+</body>
+</html>
